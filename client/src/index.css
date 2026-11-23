@@ -1,0 +1,880 @@
+/* ============================================================
+   CASINO À BOIRE — SQUELETTE WIREFRAME NEUTRE (PRÊT À DESIGNER)
+   ------------------------------------------------------------
+   Aucune direction artistique : fond blanc, texte noir, bordures
+   grises 1px, police système, zéro dégradé, zéro ombre, zéro
+   texture.
+   Pour appliquer votre propre design, modifiez les variables
+   ci-dessous dans :root ou remplacez ce fichier.
+   ============================================================ */
+
+:root {
+  /* ── Palette neutre (à personnaliser) ───────────────────── */
+  --bg-base:        #ffffff;
+  --bg-surface:     #f7f7f7;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f0f0f0;
+  --bg-elevated:    #f2f2f2;
+  --bg-input:       #ffffff;
+
+  --border-default: #cccccc;
+  --border-subtle:  #e2e2e2;
+  --border-strong:  #999999;
+  --border-focus:   #111111;
+
+  /* ── Alias sémantiques neutres (compatibilité composants) ─ */
+  --abyss:          #ffffff;
+  --night:          #f7f7f7;
+  --night-2:        #efefef;
+  --crimson:        #333333;
+  --crimson-deep:   #222222;
+  --emerald:        #444444;
+  --emerald-deep:   #333333;
+  --neon-red:       #222222;
+  --deco-gold:      #555555;
+  --deco-gold-hi:   #111111;
+  --deco-gold-lo:   #777777;
+  --amber:          #333333;
+  --ivory:          #111111;
+  --ink:            #000000;
+
+  --yellow:         #222222;
+  --orange:         #333333;
+  --orange-deep:    #111111;
+  --cream:          #f5f5f5;
+  --brown:          #666666;
+  --yellow-glow:    transparent;
+  --yellow-subtle:  #f2f2f2;
+
+  --green:          #222222;
+  --green-dark:     #333333;
+  --green-darker:   #222222;
+  --green-glow:     transparent;
+  --green-subtle:   #f2f2f2;
+  --green-muted:    #f5f5f5;
+
+  --red:            #222222;
+  --red-shadow:     transparent;
+  --red-glow:       transparent;
+  --red-subtle:     #eeeeee;
+
+  --gold:           #222222;
+  --gold-subtle:    #f4f4f4;
+  --gold-glow:      transparent;
+
+  --blue:           #333333;
+  --blue-subtle:    #f2f2f2;
+
+  /* ── Texte ──────────────────────────────────────────────── */
+  --text-primary:   #111111;
+  --text-secondary: #555555;
+  --text-dim:       #888888;
+  --text-inverse:   #ffffff;
+
+  /* ── Typographie système neutre ─────────────────────────── */
+  --font:         system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-deco:    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ── Rayons neutres ─────────────────────────────────────── */
+  --r-xs:   2px;
+  --r-sm:   4px;
+  --r-md:   6px;
+  --r-lg:   6px;
+  --r-xl:   8px;
+  --r-full: 999px;
+
+  /* ── Effets désactivés ──────────────────────────────────── */
+  --shadow-sm:      none;
+  --shadow-md:      none;
+  --shadow-lg:      none;
+  --shadow-sticker: none;
+  --shadow-green:   none;
+  --glow-gold:      none;
+  --glow-red:       none;
+  --deco-corners:   none;
+  --deco-inset:     none;
+  --tex-felt:       none;
+  --tex-velvet:     none;
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-base);
+}
+
+body {
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+/* ── Typographie ──────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.bubble,
+.deco-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.label-xs {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.label-sm {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.deco-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.deco-logo {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.deco-logo-lg {
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+}
+
+/* ── Conteneurs / Cartes ──────────────────────────────────── */
+.card,
+.card-surface,
+.card-elevated,
+.deco-frame,
+.felt-emerald,
+.velvet-crimson,
+.blackjack-table,
+.mines-board {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-md);
+}
+
+.card-surface {
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
+}
+
+.mines-board {
+  padding: 16px;
+}
+
+/* ── Boutons ──────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 18px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+}
+
+.btn-primary,
+.btn-gold {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.btn-primary:hover:not(:disabled),
+.btn-gold:hover:not(:disabled) {
+  background: #333333;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: #111111;
+  border-color: #999999;
+}
+
+.btn-danger,
+.btn-red {
+  background: #ffffff;
+  color: #111111;
+  border: 2px solid #111111;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn:focus-visible,
+.mines-cell:focus-visible,
+.color-btn:focus-visible {
+  outline: 2px solid #111111;
+  outline-offset: 2px;
+}
+
+.btn-lg {
+  font-size: 15px;
+  padding: 13px 22px;
+}
+
+.btn-sm {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-massive-action {
+  width: 100%;
+  min-height: 56px;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ── Champs de formulaire ─────────────────────────────────── */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 15px;
+  outline: none;
+}
+
+.input:focus,
+.select:focus {
+  border-color: var(--border-focus);
+}
+
+.input-code {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+}
+
+input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+  accent-color: #111111;
+}
+
+/* ── Badges ───────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: var(--r-sm);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+.badge-green,
+.badge-red,
+.badge-gold,
+.badge-blue,
+.badge-surface {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+/* ── KPI / Stat Box ───────────────────────────────────────── */
+.stat-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* ── Joueurs & Avatars ────────────────────────────────────── */
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  flex-shrink: 0;
+}
+
+/* ── Jeton de mise & Médaillon ────────────────────────────── */
+.bet-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--r-sm);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bet-token-amount {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: #ffffff;
+  background: #222222;
+  padding: 1px 6px;
+  border-radius: var(--r-xs);
+}
+
+.deco-medallion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  border: 2px solid var(--border-strong);
+  flex-shrink: 0;
+}
+
+/* ── Barre de progression ─────────────────────────────────── */
+.progress-track {
+  width: 100%;
+  height: 8px;
+  background: #eaeaea;
+  border: 1px solid var(--border-default);
+  overflow: hidden;
+}
+
+.progress-fill,
+.progress-fill-gold {
+  height: 100%;
+  background: #222222;
+  transition: width 0.25s linear;
+}
+
+/* ── Code Room ────────────────────────────────────────────── */
+.room-code {
+  background: var(--bg-surface);
+  border: 2px dashed var(--border-strong);
+  border-radius: var(--r-sm);
+  padding: 14px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.room-code-text {
+  font-family: var(--font-mono);
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Séparateurs ──────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 0;
+}
+
+.divider-v {
+  width: 1px;
+  background: var(--border-subtle);
+  align-self: stretch;
+}
+
+/* ── Chips ────────────────────────────────────────────────── */
+.chip-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border-default);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.chip:hover,
+.chip-active {
+  border-color: #111111;
+  color: #ffffff;
+  background: #111111;
+}
+
+/* ── Sélecteur de couleur Roulette (neutre) ───────────────── */
+.color-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.color-btn {
+  padding: 12px 8px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.color-btn.active {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.color-btn-green-roulette {
+  grid-column: span 2;
+}
+
+/* ── Feed & Résultats ─────────────────────────────────────── */
+.feed-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  font-size: 13px;
+}
+
+.result-win {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-left: 4px solid #111111;
+  border-radius: var(--r-sm);
+}
+
+.result-lose {
+  background: var(--bg-card);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--r-sm);
+}
+
+/* ── Grille Lobby ─────────────────────────────────────────── */
+.lobby-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr 320px;
+  gap: 16px;
+  align-items: start;
+}
+
+@media (max-width: 1100px) {
+  .lobby-grid { grid-template-columns: 300px 1fr; }
+  .lobby-grid > :nth-child(3) { grid-column: 1 / -1; }
+}
+
+@media (max-width: 720px) {
+  .lobby-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Cartes de vote ───────────────────────────────────────── */
+.vote-duel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  text-align: center;
+  font-family: var(--font);
+  color: var(--text-primary);
+}
+
+.vote-duel-card:hover {
+  background: var(--bg-surface);
+  border-color: #111111;
+}
+
+.vote-vs-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 800;
+  font-size: 14px;
+  color: #ffffff;
+  background: #111111;
+  border: 1px solid #111111;
+  padding: 4px 10px;
+  pointer-events: none;
+}
+
+/* ── Bandeau défilant neutre ──────────────────────────────── */
+.marquee-band {
+  overflow: hidden;
+  white-space: nowrap;
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  padding: 8px 0;
+  user-select: none;
+}
+
+.marquee-track {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+/* ── Indicateurs ──────────────────────────────────────────── */
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #999999;
+  flex-shrink: 0;
+}
+
+.dot-green { background: #111111; }
+.dot-red   { background: #ffffff; border: 1.5px solid #111111; }
+.dot-gold  { background: #555555; }
+.dot-muted { background: #cccccc; }
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #dddddd;
+  border-top-color: #111111;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.animate-in,
+.animate-pulse,
+.animate-green-pulse,
+.animate-bounce,
+.animate-flicker {
+  /* Animations décoratives désactivées dans le wireframe */
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ── Cartes à jouer (Blackjack) ───────────────────────────── */
+.playing-card {
+  width: clamp(68px, 7.5vw, 88px);
+  height: clamp(98px, 11vw, 128px);
+  background: #ffffff;
+  border: 1.5px solid #111111;
+  border-radius: var(--r-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #111111;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.playing-card-lg {
+  width: clamp(84px, 10vw, 108px);
+  height: clamp(120px, 14vw, 156px);
+  padding: 10px;
+}
+
+.playing-card-sm {
+  width: clamp(50px, 6vw, 64px);
+  height: clamp(72px, 9vw, 92px);
+  padding: 5px;
+}
+
+.playing-card-red,
+.playing-card-black {
+  color: #111111;
+}
+
+.card-back {
+  background: repeating-linear-gradient(
+    45deg,
+    #f0f0f0 0px,
+    #f0f0f0 4px,
+    #ffffff 4px,
+    #ffffff 8px
+  );
+  border: 1.5px solid #111111;
+}
+
+/* ── Les Mines (Grille 6x6 neutre) ────────────────────────── */
+.mines-grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.mines-grid-phone {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mines-cell {
+  aspect-ratio: 1 / 1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(22px, 3vw, 34px);
+  user-select: none;
+  position: relative;
+}
+
+.mines-cell-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bbbbbb;
+}
+
+.mines-cell-interactive {
+  cursor: pointer;
+}
+
+.mines-cell-interactive:hover {
+  background: #eaeaea;
+  border-color: #111111;
+}
+
+.mines-cell-safe {
+  background: #e9e9e9;
+  border: 2px solid #111111;
+}
+
+.mines-cell-bomb {
+  background: #111111;
+  color: #ffffff;
+  border: 2px solid #111111;
+}
+
+.mines-cell-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Affichage TV neutre ──────────────────────────────────── */
+.tv-multiplier-huge {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 1;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.tv-title-giant {
+  font-size: clamp(1.75rem, 3.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.tv-banner-massive {
+  padding: 20px 28px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  border-radius: var(--r-md);
+}
+
+.tv-score-badge {
+  font-family: var(--font-mono);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 700;
+  min-width: 54px;
+  min-height: 54px;
+  border-radius: 50%;
+  border: 2px solid #111111;
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Utilitaires ──────────────────────────────────────────── */
+.text-green     { color: var(--text-primary); }
+.text-red       { color: var(--text-primary); }
+.text-gold      { color: var(--text-primary); }
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-dim       { color: var(--text-dim); }
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.w-full          { width: 100%; }
+.flex            { display: flex; }
+.flex-col        { flex-direction: column; }
+.items-center    { align-items: center; }
+.justify-between { justify-content: space-between; }
+.justify-center  { justify-content: center; }
+.gap-1           { gap: 4px; }
+.gap-2           { gap: 8px; }
+.gap-3           { gap: 12px; }
+.gap-4           { gap: 16px; }
+.gap-5           { gap: 20px; }
+.gap-6           { gap: 24px; }
+.flex-1          { flex: 1; }
+.shrink-0        { flex-shrink: 0; }
+.text-center     { text-align: center; }
+.text-right      { text-align: right; }
